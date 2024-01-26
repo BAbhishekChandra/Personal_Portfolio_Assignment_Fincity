@@ -1,0 +1,136 @@
+<div className="form-container">
+            <form
+              className="add-project-form-container"
+              onSubmit={this.addProjectForm}
+            >
+              <h1 className="add-project">Add Project</h1>
+              <label className="label-element" htmlFor="projectName">
+                Project Name
+              </label>
+              <input
+                className="input-element"
+                type="text"
+                id="projectName"
+                value={projectName}
+                onChange={this.onChangeProjectName}
+              />
+              <label className="label-element" htmlFor="projectLink">
+                Project Link
+              </label>
+              <input
+                className="input-element"
+                type="text"
+                id="projectLink"
+                value={projectLink}
+                onChange={this.onChangeProjectLink}
+              />
+              <label className="label-element" htmlFor="description">
+                Description
+              </label>
+              <textarea
+                className="input-element-textarea"
+                type="textarea"
+                id="description"
+                rows="10"
+                cols="50"
+                value={description}
+                onChange={this.onChangeDescription}
+              >
+                {description}
+              </textarea>
+              <button className="add-button" type="submit">
+                Add
+              </button>
+            </form>
+          </div>
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eef5ff;
+  height: 100vh;
+}
+
+.add-project-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.add-project {
+  font-family: 'PT Serif';
+  font-size: 54px;
+  font-weight: 900;
+  color: #000000;
+  align-self: center;
+  padding-bottom: 10px;
+  border-bottom: 5px solid #ffc436;
+}
+
+.label-element {
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 400;
+  color: #000000;
+  padding: 10px 10px 10px 0;
+}
+
+.input-element {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  margin: 0 0 10px 0;
+}
+
+.input-element-textarea {
+  width: 100%;
+}
+
+.add-button {
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 20px 12px 20px;
+  margin: 10px 0 10px 0;
+  width: 30%;
+  align-self: flex-end;
+  color: #000000;
+  background-color: #ffc436;
+  border: none;
+  border-radius: 10px;
+}
+
+.footer-img {
+  width: 100%;
+  height: 500px;
+}
+
+
+          addNewProjectItemToList = projectDetails => {
+    console.log(projectDetails)
+    this.setState(prevState => ({
+      renderProjectList: [...prevState.renderProjectList, projectDetails],
+    }))
+  }
+
+  addProjectForm = event => {
+    event.preventDefault()
+    const {projectName, projectLink, description} = this.state
+    const projectDetails = {id: uuidv4(), projectName, projectLink, description}
+    // console.log(projectDetails)
+    this.addNewProjectItemToList(projectDetails)
+  }
+
+  onChangeProjectName = event => {
+    this.setState({projectName: event.target.value})
+  }
+
+  onChangeProjectLink = event => {
+    this.setState({projectLink: event.target.value})
+  }
+
+  onChangeDescription = event => {
+    this.setState({description: event.target.value})
+  }
